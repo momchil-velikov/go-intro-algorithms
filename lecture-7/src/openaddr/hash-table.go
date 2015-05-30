@@ -1,9 +1,4 @@
-package main
-
-import (
-    "fmt"
-    "math/rand"
-)
+package openaddr
 
 const (
     present uint32 = 1
@@ -112,73 +107,4 @@ func (s *IntSet) Delete(k int64) bool {
     e.flags |= deleted
     s.n--
     return true
-}
-
-func randomShuffle(a []int64) []int64 {
-    for i := len(a); i > 1; i-- {
-        j := rand.Intn(i)
-        a[i - 1], a[j] = a[j], a[i - 1]
-    }
-    return a
-}
-
-func makeValues(n uint) []int64 {
-    a := make([]int64, n)
-    for i := uint(0); i < n; i++ {
-        a[i] = int64(i)
-    }
-    return randomShuffle(a)
-}
-
-func main() {
-    // Generate the values, randomly shuffled.
-    const n = 100000000
-    a := makeValues(n)
-
-    // Insert all the things!
-    s := newIntSet()
-    for _, v := range a {
-        s.Insert(v)
-    }
-
-    // Check all values are present.
-    for _, v := range a {
-        if !s.Find(v) {
-            panic("key must be present")
-        }
-    }
-
-    // Delete values at even positions.
-    for i := range a {
-        if (i & 1) == 0 {
-            s.Delete(a[i])
-        }
-    }
-
-    // Check values at even positions are absent and values at odd positions are present.
-    for i,v := range a {
-        if (i & 1) == 0 {
-            if s.Find(v) {
-                panic(fmt.Sprintf("key #%d must not be present", i))
-            }
-        } else {
-            if !s.Find(v) {
-                panic(fmt.Sprintf("key #%d must be present", i))
-            }
-        }
-    }
-
-    // Insert again the values at even positions.
-    for i := range a {
-        if (i & 1) == 0 {
-            s.Insert(a[i])
-        }
-    }
-
-    // Check all the values are present.
-    for _, v := range a {
-        if !s.Find(v) {
-            panic("key must be present")
-        }
-    }
 }
