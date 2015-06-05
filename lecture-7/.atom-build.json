@@ -1,0 +1,17 @@
+{
+  "cmd": "go test openaddr",
+  "name": "Run Test",
+  "cwd": "{PROJECT_PATH}",
+  "env": {
+    "GOPATH": "{PROJECT_PATH}"
+  },
+  "errorMatch": "(?<file>.+\\.go):(?<line>\\d+):",
+  "targets": {
+  "Run benchmark": {
+    "cmd": "go test --bench=. openaddr",
+    "env": {
+      "GOPATH": "{PROJECT_PATH}"
+      }
+    }
+  }
+}
