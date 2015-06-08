@@ -1,0 +1,14 @@
+{
+  "cmd": "go test it",
+  "name": "Test Interval Tree",
+  "cwd": "{PROJECT_PATH}",
+  "env": {
+    "GOPATH": "{PROJECT_PATH}"
+  },
+  "errorMatch": "(?<file>.+\\.go):(?<line>\\d+):",
+  "targets": {
+      "Test Order Statistics" : {
+          "cmd": "go test ost"
+      }
+  }
+}
