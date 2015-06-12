@@ -31,8 +31,8 @@ func (l *List) Init() {
 func (l *List) newNode(k KeyT) *node {
 	h := int(1)
 	for {
-		r := l.rng.Int()
-		if (r & 1) == 1 {
+		r := l.rng.Intn(100)
+		if r < 50 {
 			break
 		}
 		h++
