@@ -245,10 +245,9 @@ func split(x *node, i uint) {
 	z.n = _T - 1
 	copy(z.key[:], y.key[_T:])
 	copy(z.child[:], y.child[_T:])
-	for j := uint(0); j < _T-1; j++ {
-		y.child[_T+j] = nil
+	for j := uint(_T); j < _T+_T; j++ {
+		y.child[j] = nil
 	}
-	z.child[z.n] = y.child[2*_T-1]
 	y.n = _T - 1
 	copy(x.key[i+1:x.n+1], x.key[i:x.n])
 	copy(x.child[i+2:x.n+2], x.child[i+1:x.n+1])

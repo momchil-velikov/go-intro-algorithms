@@ -33,7 +33,7 @@ func makeValues(n uint) []int64 {
 	return randomShuffle(a)
 }
 
-const _N = 100000
+const _N = 200000
 
 var (
 	_A = makeValues(_N)
