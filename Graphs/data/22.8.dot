@@ -1,0 +1,22 @@
+digraph G {
+m -> q
+m -> x
+m -> r
+q -> t
+n -> q
+n -> u
+n -> o
+r -> u
+r -> y
+y -> v
+o -> r
+o -> v
+o -> s
+v -> x
+v -> w
+s -> r
+p -> s
+p -> o
+p -> z
+w -> z
+}

@@ -1,0 +1,17 @@
+digraph G {
+q[label=start]
+s -> v
+v -> w
+w -> s
+q -> s
+q -> w
+q -> t
+t -> x
+t -> y
+x -> z
+z -> x
+y -> q
+r-> y
+r -> u
+u -> y
+}
