@@ -1,0 +1,16 @@
+digraph G {
+a -> b [weight="4"]
+a -> h [weight="8"]
+b -> c [weight="8"]
+b -> h [weight="11"]
+c -> d [weight="7"]
+c -> i [weight="2"]
+c -> f [weight="4"]
+d -> e [weight="9"]
+d -> f [weight="14"]
+e -> f [weight="10"]
+i -> h [weight="7"]
+i -> g [weight="6"]
+h -> g [weight="1"]
+g -> f [weight="2"]
+}
