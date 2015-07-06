@@ -124,11 +124,11 @@ func (p *parser) parseStmtList() error {
 
 // node-stmt ::= sym [ "[" attr-list [","] "]" ]
 func (p *parser) parseNodeStmt(name string) error {
+	id := p.createNode(name)
 	if p.token.kind == tLBracket {
 		if attrs, err := p.parseAttrList(); err != nil {
 			return err
 		} else {
-			id := p.createNode(name)
 			p.graph.SetNodeAttrs(id, attrs)
 		}
 	}
