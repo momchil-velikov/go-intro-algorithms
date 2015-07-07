@@ -1,0 +1,12 @@
+digraph NEG {
+s -> t[weight=6]
+s -> y[weight=7]
+t -> x[weight=5]
+t -> y[weight=8]
+t -> z[weight="-4"]
+x -> t[weight="-2"]
+y -> x[weight="-3"]
+y -> z[weight=9]
+z -> s[weight=2]
+z -> x[weight=5]
+}

@@ -187,30 +187,50 @@ func ssspDijkstra(g *graph) {
 	pq[0].weight = 0.0
 
 	for len(pq) != 0 {
-		// printHeap(pq)
-
 		var rep *nodeRep
 		pq, rep = heapPop(pq)
 		np := rep.np
 		np.dist = rep.weight
 		np.pred = rep.pred
-		// fmt.Fprintln(os.Stderr, "pulling out ", np.label, ", dist =", np.dist)
-
 		for _, e := range np.succ {
 			dp := &g.nodes[e.dst]
 			rep = &reps[dp.id]
 			relax(np, e.weight, rep)
-			// if np.dist+e.weight < rep.weight {
-			// 	rep.weight = np.dist + e.weight
-			//     rep.pred = np.id
-			// if rep.index >= len(pq) {
-			// 	fmt.Fprintln(os.Stderr, "rep.index =", rep.index, "len(pq) =", len(pq),
-			// 		"np.label =", rep.np.label)
-			// }
-			// 	heapUp(pq, rep.index)
-			// }
 		}
 	}
+}
+
+func ssspBelmanFord(g *graph) bool {
+	relax := func(sp *node, weight float64, dp *node) {
+		if sp.dist+weight < dp.dist {
+			dp.dist = sp.dist + weight
+			dp.pred = sp.id
+		}
+	}
+	for i := range g.nodes {
+		g.nodes[i].dist = math.MaxFloat64
+		g.nodes[i].pred = -1
+	}
+	g.nodes[0].dist = 0
+	for step := 0; step < len(g.nodes)-1; step++ {
+		for i := range g.nodes {
+			sp := &g.nodes[i]
+			for _, e := range sp.succ {
+				dp := &g.nodes[e.dst]
+				relax(sp, e.weight, dp)
+			}
+		}
+	}
+	for i := range g.nodes {
+		sp := &g.nodes[i]
+		for _, e := range sp.succ {
+			dp := &g.nodes[e.dst]
+			if dp.dist > sp.dist+e.weight {
+				return false
+			}
+		}
+	}
+	return true
 }
 
 func main() {
@@ -234,7 +254,10 @@ func main() {
 	if err := gio.Read(filename, bufio.NewReader(in), g); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
-	ssspDijkstra(g)
+	// ssspDijkstra(g)
+	if !ssspBelmanFord(g) {
+		fmt.Fprintln(os.Stderr, "negative cycle")
+	}
 	w := bufio.NewWriter(os.Stdout)
 	gio.Write(w, g)
 	w.Flush()
