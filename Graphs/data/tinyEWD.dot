@@ -1,0 +1,17 @@
+digraph G {
+v4->v5[weight="0.35"]
+v5->v4[weight="0.35"]
+v4->v7[weight="0.37"]
+v5->v7[weight="0.28"]
+v7->v5[weight="0.28"]
+v5->v1[weight="0.32"]
+v0->v4[weight="0.38"]
+v0->v2[weight="0.26"]
+v7->v3[weight="0.39"]
+v1->v3[weight="0.29"]
+v2->v7[weight="0.34"]
+v6->v2[weight="0.40"]
+v3->v6[weight="0.52"]
+v6->v0[weight="0.58"]
+v6->v4[weight="0.93"]
+}
