@@ -130,7 +130,9 @@ func main() {
 	if err != nil {
 		fmt.Fprintln(os.Stderr, filename, err)
 	}
+	b := a.Copy()
 	a = apspFloydWarshall(a)
+	e := b.Index()
 	m := a.Index()
 	for i := 0; i < a.N; i++ {
 		for j := 0; j < a.N; j++ {
@@ -142,7 +144,8 @@ func main() {
 				q := j
 				for q != i {
 					x := m(i, q)
-					fmt.Printf("%d->%d(%5.2f) ", q, x.prev, x.dist)
+					w := *e(x.prev, q)
+					fmt.Printf("%d<-%d(%5.2f) ", q, x.prev, w.dist)
 					q = x.prev
 				}
 				fmt.Println()
