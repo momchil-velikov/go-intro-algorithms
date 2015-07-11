@@ -1,0 +1,11 @@
+digraph Flow {
+v0; v5
+v0-> v1[weight="2.0"]
+v0-> v2[weight="3.0"]
+v1-> v3[weight="3.0"]
+v1-> v4[weight="1.0"]
+v2-> v3[weight="1.0"]
+v2-> v4[weight="1.0"]
+v3-> v5[weight="2.0"]
+v4-> v5[weight="3.0"]
+}

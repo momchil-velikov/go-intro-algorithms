@@ -1,0 +1,15 @@
+digraph Flow {
+a; b
+a -> v1[weight=3]
+a -> v2[weight=3]
+a -> v3[weight=5]
+v1 -> v3[weight=4]
+v1 -> v4[weight=3]
+v2 -> v3[weight=2]
+v2 -> v5[weight=2]
+v3 -> v4[weight=2]
+v3 -> b[weight=1]
+v3 -> v5[weight=4]
+v4 -> b[weight=4]
+v5 -> b[weight=5]
+}

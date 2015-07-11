@@ -1,0 +1,12 @@
+digraph FLOW {
+        s; t
+        s -> v1[weight=16]
+        s -> v2[weight=13]
+        v1 -> v3[weight=12]
+        v2 -> v1[weight=4]
+        v2 -> v4[weight=14]
+        v3 -> v2[weight=9]
+        v3 -> t[weight=20]
+        v4 -> v3[weight=7]
+        v4 -> t[weight=4]
+}
